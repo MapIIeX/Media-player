@@ -51,7 +51,7 @@ export const videoPlayerInit = () => {
         videoTimeTotal.textContent = `${formatDate(minutesTotal)}:${formatDate(secondsTotal)}`;
     });
 
-    videoProgress.addEventListener("change", () => {
+    videoProgress.addEventListener("input", () => {
         const duration = videoPlayer.duration;
         const value = videoProgress.value;
 
