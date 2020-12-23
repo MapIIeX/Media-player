@@ -26,6 +26,7 @@
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/font-awesome.min.css">
 	<link rel="stylesheet" href="styles/style.min.css">
+	<link rel="stylesheet" href="styles/radio-volume.css">
 </head>
 
 <body>
@@ -174,7 +175,10 @@
 				</div>
 			</div>
 			<footer class="footer-fix radio-footer">
-				<button class="radio-stop fa fa-play"></button>
+				<nav class="radio-buttons" aria-label="regulation buttons">
+					<button class="radio-stop fa fa-play"></button>
+					<input type="range" class="radio-volume" min="0" max="1" step="0.01" value="1"/>
+				</nav>
 			</footer>
 		</article>
 	</main>

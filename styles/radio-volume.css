@@ -1,0 +1,19 @@
+.radio-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 300px;
+}
+
+.radio-volume {
+    -webkit-appearance: auto !important;
+    appearance: auto !important;
+    width: 100px !important;
+    position: relative;
+}
+
+.radio-volume::after {
+    content: "🔊";
+    position: absolute;
+    top: 2px;
+    left: -25px;
+}
