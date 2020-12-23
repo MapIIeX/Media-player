@@ -7,19 +7,16 @@ export const radioPlayerInit = () => {
     const radioItems = document.querySelectorAll(".radio-item");
     const radioStop = document.querySelector(".radio-stop");
     const radioVolume = document.querySelector(".radio-volume");
+    const radioVolumeButton = document.querySelector(".radio-volume__button");
     
-    const audio = new Audio();
-    audio.type = "audio/aac";
-    radioStop.disabled = true;
-
     const currentStation = item => {
         radioCoverImg.src = item.querySelector(".radio-img").src;
         radioHeaderBig.textContent = item.querySelector(".radio-name").textContent;
         radioItems.forEach(el => el.classList.remove("select"));
         item.classList.add("select");
     };
-
-    const changeIcons = () => {
+    
+    const changePlayIcons = () => {
         if(audio.paused) {
             radio.classList.remove("play");
             radioStop.classList.remove("fa-stop");
@@ -31,6 +28,33 @@ export const radioPlayerInit = () => {
         }
     };
 
+    const changeVolume = () => {
+        audio.volume = radioVolume.value;
+        if(audio.volume === 0) {
+            radioVolumeButton.textContent = "🔇";
+        } else {
+            radioVolumeButton.textContent = "🔊";
+        }
+    };
+
+    const muteSound = () => {
+        if(memorisedVolume && !audio.volume) {
+            radioVolumeButton.textContent = "🔊";
+            audio.volume = memorisedVolume;
+            radioVolume.value = memorisedVolume;
+        } else {
+            radioVolumeButton.textContent = "🔇";
+            memorisedVolume = audio.volume;
+            audio.volume = '0';
+            radioVolume.value = '0';
+        }
+    };
+    
+    const audio = new Audio();
+    audio.type = "audio/aac";
+    radioStop.disabled = true;
+    let memorisedVolume;
+    
     radioNavigation.addEventListener("change", event => {
         radioStop.disabled = false;
 
@@ -41,7 +65,7 @@ export const radioPlayerInit = () => {
 
         const parentNode = target.closest(".radio-item");
         currentStation(parentNode);
-        changeIcons();
+        changePlayIcons();
     });
 
     radioStop.addEventListener("click", () => {
@@ -52,8 +76,9 @@ export const radioPlayerInit = () => {
         }
     });
 
-    audio.addEventListener("play", changeIcons);
-    audio.addEventListener("pause", changeIcons);
+    audio.addEventListener("play", changePlayIcons);
+    audio.addEventListener("pause", changePlayIcons);
 
-    radioVolume.addEventListener("input", () => audio.volume = radioVolume.value);
+    radioVolume.addEventListener("input", changeVolume);
+    radioVolumeButton.addEventListener("click", muteSound);
 };

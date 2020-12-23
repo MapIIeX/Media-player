@@ -1,6 +1,7 @@
 .radio-buttons {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     width: 300px;
 }
 
@@ -11,9 +12,11 @@
     position: relative;
 }
 
-.radio-volume::after {
-    content: "🔊";
-    position: absolute;
-    top: 2px;
-    left: -25px;
+.radio-volume__button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.radio-volume__button:focus {
+    outline: none;
 }
