@@ -1,6 +1,18 @@
 import {addZero} from "./supScript.js";
 
-export const videoPlayerInit = btns => {
+export const disableVideoPlayer = btns => {
+   // заглушение при клике на другую вкладку
+   const videoPlayer = document.querySelector(".video-player");
+   btns.forEach(element => {
+    if (!element.classList.contains("player-video")) {
+        element.addEventListener("click", () => {
+            videoPlayer.pause();
+        });
+    }
+});
+};
+
+export const videoPlayerInit = () => {
     const videoPlayer = document.querySelector(".video-player");      
     const videoButtonPlay = document.querySelector(".video-button__play");
     const videoButtonStop = document.querySelector(".video-button__stop");
@@ -61,15 +73,6 @@ export const videoPlayerInit = btns => {
     window.addEventListener("keydown", event => {
         if(event.code === "Space" && playerVideo.classList.contains("active")) {
             togglePlay();
-        }
-    });
-
-    // заглушение при клике на другую вкладку
-    btns.forEach(element => {
-        if (!element.classList.contains("player-video")) {
-            element.addEventListener("click", () => {
-                stopPlay();
-            });
         }
     });
 };

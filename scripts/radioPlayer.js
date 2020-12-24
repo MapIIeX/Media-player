@@ -1,4 +1,18 @@
-export const radioPlayerInit = btns => {
+const audio = new Audio();
+audio.type = "audio/aac";
+
+export const disableRadioPlayer = btns => {
+    // заглушение при клике на другую вкладку
+    btns.forEach(element => {
+        if (!element.classList.contains("player-radio")) {
+            element.addEventListener("click", () => {
+                audio.pause();
+            });
+        }
+    });
+};
+
+export const radioPlayerInit = () => {
     
     const radio = document.querySelector(".radio");
     const radioCoverImg = document.querySelector(".radio-cover__img");
@@ -50,8 +64,6 @@ export const radioPlayerInit = btns => {
         }
     };
     
-    const audio = new Audio();
-    audio.type = "audio/aac";
     radioStop.disabled = true;
     let memorisedVolume;
     
@@ -81,13 +93,4 @@ export const radioPlayerInit = btns => {
 
     radioVolume.addEventListener("input", changeVolume);
     radioVolumeButton.addEventListener("click", muteSound);
-
-    // заглушение при клике на другую вкладку
-    btns.forEach(element => {
-        if (!element.classList.contains("player-radio")) {
-            element.addEventListener("click", () => {
-                audio.pause();
-            });
-        }
-    });
 };

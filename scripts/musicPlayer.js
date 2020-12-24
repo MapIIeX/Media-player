@@ -1,6 +1,18 @@
 import {addZero} from "./supScript.js";
 
-export const musicPlayerInit = btns => {
+export const disableAudioPlayer = btns => {
+    // заглушение при клике на другую вкладку
+    const audioPlayer = document.querySelector(".audio-player");
+    btns.forEach(element => {
+        if (!element.classList.contains("player-audio")) {
+            element.addEventListener("click", () => {
+                audioPlayer.pause();
+            });
+        }
+    });
+};
+
+export const musicPlayerInit = () => {
 
     const audio = document.querySelector(".audio");
     const audioPlayer = document.querySelector(".audio-player");
@@ -16,6 +28,18 @@ export const musicPlayerInit = btns => {
     const playList = ["hello", "flow", "speed"];
 
     let trackIndex = 0;
+
+    const changeIcons = () => {
+        if(audioPlayer.paused) {
+            audio.classList.remove("play");
+            audioButtonPlay.classList.add("fa-play");
+            audioButtonPlay.classList.remove("fa-pause");
+        } else {
+            audio.classList.add("play");
+            audioButtonPlay.classList.remove("fa-play");
+            audioButtonPlay.classList.add("fa-pause");
+        }
+    }
 
     const loadSong = () => {
         const isPlayed = audioPlayer.paused;
@@ -51,9 +75,6 @@ export const musicPlayerInit = btns => {
         const target = event.target;
 
         if (target.classList.contains("audio-button__play")) {
-            audio.classList.toggle("play");
-            audioButtonPlay.classList.toggle("fa-play");
-            audioButtonPlay.classList.toggle("fa-pause");
             if (audioPlayer.paused) {
                 audioPlayer.play();
             } else {
@@ -70,6 +91,9 @@ export const musicPlayerInit = btns => {
             nextSong();
         }
     });
+
+    audioPlayer.addEventListener("play", changeIcons);
+    audioPlayer.addEventListener("pause", changeIcons);
 
     audioPlayer.addEventListener("ended", () => {
         nextSong();
@@ -97,19 +121,5 @@ export const musicPlayerInit = btns => {
         const fullWidth = event.target.clientWidth;
         audioProgressTiming.style.width = (x / fullWidth) * 100 + "%";
         audioPlayer.currentTime = (x / fullWidth) * audioPlayer.duration;
-    });
-
-    // заглушение при клике на другую вкладку
-    btns.forEach(element => {
-        if (!element.classList.contains("player-audio")) {
-            element.addEventListener("click", () => {
-                if(!audioPlayer.paused) {
-                    audio.classList.toggle("play");
-                    audioButtonPlay.classList.toggle("fa-play");
-                    audioButtonPlay.classList.toggle("fa-pause");
-                }
-                audioPlayer.pause();
-            });
-        }
     });
 };
