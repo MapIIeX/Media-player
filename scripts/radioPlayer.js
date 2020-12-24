@@ -1,4 +1,4 @@
-export const radioPlayerInit = () => {
+export const radioPlayerInit = btns => {
     
     const radio = document.querySelector(".radio");
     const radioCoverImg = document.querySelector(".radio-cover__img");
@@ -81,4 +81,13 @@ export const radioPlayerInit = () => {
 
     radioVolume.addEventListener("input", changeVolume);
     radioVolumeButton.addEventListener("click", muteSound);
+
+    // заглушение при клике на другую вкладку
+    btns.forEach(element => {
+        if (!element.classList.contains("player-radio")) {
+            element.addEventListener("click", () => {
+                audio.pause();
+            });
+        }
+    });
 };

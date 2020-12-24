@@ -18,6 +18,6 @@ playerBtns.forEach((btn, i) => btn.addEventListener("click", () => {
     playerBlocks[i].classList.add("active");
 }));
 
-videoPlayerInit();
-musicPlayerInit();
-radioPlayerInit();
+videoPlayerInit(playerBtns);
+musicPlayerInit(playerBtns);
+radioPlayerInit(playerBtns);

@@ -1,4 +1,6 @@
-export const videoPlayerInit = () => {
+import {addZero} from "./supScript.js";
+
+export const videoPlayerInit = btns => {
     const videoPlayer = document.querySelector(".video-player");      
     const videoButtonPlay = document.querySelector(".video-button__play");
     const videoButtonStop = document.querySelector(".video-button__stop");
@@ -25,8 +27,6 @@ export const videoPlayerInit = () => {
         videoPlayer.currentTime = 0;
     };
 
-    const formatDate = n => n < 10 ? `0${n}` : n;
-
     videoPlayer.addEventListener("click", togglePlay);
     videoButtonPlay.addEventListener("click", togglePlay);
 
@@ -47,8 +47,8 @@ export const videoPlayerInit = () => {
         const minutesTotal = Math.floor(duration / 60);
         const secondsTotal = Math.floor(duration % 60);
 
-        videoTimePassed.textContent = `${formatDate(minutesPassed)}:${formatDate(secondsPassed)}`;
-        videoTimeTotal.textContent = `${formatDate(minutesTotal)}:${formatDate(secondsTotal)}`;
+        videoTimePassed.textContent = `${addZero(minutesPassed)}:${addZero(secondsPassed)}`;
+        videoTimeTotal.textContent = `${addZero(minutesTotal)}:${addZero(secondsTotal)}`;
     });
 
     videoProgress.addEventListener("input", () => {
@@ -61,6 +61,15 @@ export const videoPlayerInit = () => {
     window.addEventListener("keydown", event => {
         if(event.code === "Space" && playerVideo.classList.contains("active")) {
             togglePlay();
+        }
+    });
+
+    // заглушение при клике на другую вкладку
+    btns.forEach(element => {
+        if (!element.classList.contains("player-video")) {
+            element.addEventListener("click", () => {
+                stopPlay();
+            });
         }
     });
 };
