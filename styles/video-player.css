@@ -1,0 +1,52 @@
+@media screen and (max-width: 1024px) {
+    .video-volume-wrapper__button,
+    .video-volume__wrapper,
+    .video-button__stop {
+        display: none;
+    }
+}
+.video-volume__button {
+    background: none;
+    outline: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background-image: url("../image/volume_2.svg");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center 11px;
+}
+.video-volume__wrapper {
+    width: 0px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+.video-volume-wrapper__button:hover + .video-volume__wrapper {
+    width: 100px;
+    transition: all 0.3s ease-in-out;
+}
+.video-volume__wrapper:hover {
+    width: 100px;
+}
+
+.video-button__fullscreen {
+    margin: 0 10px 0;
+    width: 40px;
+    height: 40px;
+    background-image: url("../image/fullscreen.svg");
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.navigation-hidden {
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+.cursor-hidden {
+    cursor: none;
+}
+
+.navbar-bottom {
+    bottom: 0;
+}

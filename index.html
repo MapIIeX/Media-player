@@ -27,6 +27,7 @@
 	<link rel="stylesheet" href="styles/font-awesome.min.css">
 	<link rel="stylesheet" href="styles/style.min.css">
 	<link rel="stylesheet" href="styles/radio-volume.css">
+	<link rel="stylesheet" href="styles/video-player.css">
 </head>
 
 <body>
@@ -57,9 +58,16 @@
 					<nav class="video-navigation" aria-label="видео кнопки">
 						<button class="video-button video-button__play fa fa-play"></button>
 						<button class="video-button video-button__stop fa fa-stop"></button>
+						<label class="video-volume-wrapper__button">
+							<button class="video-volume__button"></button>
+						</label>
+						<div class="video-volume__wrapper">
+							<input class="video-volume" type="range" min="0" max="1" step="0.01" value="1">
+						</div>
 						<p class="video-time video-time__passed">00:00</p>
 						<input type="range" class="video-progress" min="0" max="100" step="0.1" value="0">
 						<p class="video-time video-time__total">00:00</p>
+						<button class="video-button video-button__fullscreen"></button>
 					</nav>
 				</div>
 			</div>
