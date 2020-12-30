@@ -54,13 +54,13 @@ export const videoPlayerInit = () => {
     const changeVolumeIcon = () => {
         const volume = videoPlayer.volume;
         if (volume === 0) {
-            videoVolumeButton.style.backgroundImage = `url("../image/${volumeStates[0]}.svg")`;
+            videoVolumeButton.style.backgroundImage = `url("./image/${volumeStates[0]}.svg")`;
         } else if (volume < 0.25 && volume > 0) {
-            videoVolumeButton.style.backgroundImage = `url("../image/${volumeStates[1]}.svg")`;
+            videoVolumeButton.style.backgroundImage = `url("./image/${volumeStates[1]}.svg")`;
         } else if (volume < 0.75 && volume >= 0.25) {
-            videoVolumeButton.style.backgroundImage = `url("../image/${volumeStates[2]}.svg")`;
+            videoVolumeButton.style.backgroundImage = `url("./image/${volumeStates[2]}.svg")`;
         } else if (volume <= 1 && volume >= 0.75) {
-            videoVolumeButton.style.backgroundImage = `url("../image/${volumeStates[3]}.svg")`;
+            videoVolumeButton.style.backgroundImage = `url("./image/${volumeStates[3]}.svg")`;
         }
     };
 
@@ -76,14 +76,14 @@ export const videoPlayerInit = () => {
         const container = videoContainer.parentNode;
 
         if (document.fullscreenElement) {
-            videoButtonFullscreen.style.backgroundImage = 'url("../image/not_fullscreen.svg")';
+            videoButtonFullscreen.style.backgroundImage = 'url("./image/not_fullscreen.svg")';
             videoContainer.style.position = "unset";
             videoContainer.style.maxWidth = "unset";
             container.classList.remove("container");
             videoPlayer.style.height = Math.round(window.screen.availWidth / 16 * 9) + "px";
             hideControls();
         } else {
-            videoButtonFullscreen.style.backgroundImage = 'url("../image/fullscreen.svg")';
+            videoButtonFullscreen.style.backgroundImage = 'url("./image/fullscreen.svg")';
             videoContainer.style.position = "relative";
             videoContainer.style.maxWidth = "800px";
             container.classList.add("container");
